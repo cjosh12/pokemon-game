@@ -1,12 +1,10 @@
 import pokemonApi from '@/api/PokemonApi'
 import type { AxiosResponse } from 'axios';
 import type {Pokemon} from '@/interfaces/Pokemon.interface';
+import type { ListPokemonOptions } from '@/interfaces/ListPokemonOptions.interface';
 
 
-interface ListPokemonOptions{
-    id: number;
-    name: string;
-}
+
 const getPokemons = (): number[] => {
     const pokemonsArr: number[] = Array.from(Array(650))
 
