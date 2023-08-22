@@ -11,7 +11,9 @@
         return{
             PokemonArr: [] as ListPokemonOptions[],
             pokemon:null as ListPokemonOptions | null,
-            showPokemon : false
+            showPokemon : false,
+            showAnswer: false,
+            message: ''
         }
     },
     methods:{
@@ -21,6 +23,22 @@
             const rndInt = Math.floor(Math.random()*4)
 
             this.pokemon = this.PokemonArr[rndInt]
+        },
+        checkAnswer (selectedId: number) {
+            this.showPokemon = true;
+            this.showAnswer = true;
+            if(!this.pokemon) return;
+            if(selectedId===this.pokemon?.id){
+                this.message = `correcto, ${this.pokemon.name}`
+            }else{
+                this.message = `Ooops, era ${this.pokemon.name}`
+            }
+    },
+        newGame(){
+            this.showPokemon=false
+            this.showAnswer=false
+            this.PokemonArr = []
+            this.mixPokemonArray()
         }
     },
     mounted(){
@@ -35,7 +53,14 @@
         <h1>¿Quién es este pokémon?</h1>
     
         <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon"/>
-        <PokemonOptions :pokemons="PokemonArr"/>
+        <PokemonOptions :pokemons="PokemonArr" @selection="checkAnswer"/>
+
+    <template v-if="showAnswer">        
+        <h2 class="fade-id">{{ message }}</h2>
+        <button @click="newGame">
+            Nuevo Juego
+        </button>
+    </template>
     </div>
 
 
