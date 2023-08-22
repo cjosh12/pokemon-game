@@ -57,7 +57,7 @@
         <PokemonOptions :pokemons="PokemonArr" @selection="checkAnswer"/>
 
     <template v-if="showAnswer">        
-        <h2 class="fade-id">{{ message }}</h2>
+        <h2 class="fade-in">{{ message }}</h2>
         <button @click="newGame">
             Nuevo Juego
         </button>
