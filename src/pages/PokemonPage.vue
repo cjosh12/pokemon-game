@@ -25,8 +25,9 @@
             this.pokemon = this.PokemonArr[rndInt]
         },
         checkAnswer (selectedId: number) {
-            this.showPokemon = true;
-            this.showAnswer = true;
+            this.showPokemon = true
+            this.showAnswer = true
+            this.PokemonArr = []
             if(!this.pokemon) return;
             if(selectedId===this.pokemon?.id){
                 this.message = `correcto, ${this.pokemon.name}`
